@@ -1,0 +1,27 @@
+CREATE DATABASE Cinelitas;
+use Cinelitas;
+
+CREATE TABLE `Peliculas` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`Costo` int(11) NOT NULL AUTO_INCREMENT,
+`Nombre` varchar(50) NOT NULL,
+`Fecha` varchar(50) NOT NULL,
+PRIMARY KEY (`id`)
+)ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+INSERT INTO `Peliculas` VALUES (1,3300,'Toys Story','2:00pm'),(2,3100,'Rocky','4:15pm'),(3,2500,'Luca','8:00pm'),(4,5000,'Avengers','12:00am');
+
+CREATE TABLE `Salas` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`Maximo_de_personas` int(11) NOT NULL AUTO_INCREMENT,
+`Numero_de_sala` int(11) NOT NULL AUTO_INCREMENT,
+`Pelicula_de_sala` varchar(50) NOT NULL,
+`Pelicula_de_sala_id` int(11) NOT NULL,
+PRIMARY KEY (`id`, `Pelicula_de_sala`),
+KEY `fk_Peliculas_Salas` (`Pelicula_de_sala_id`),
+CONSTRAINT `fk_Peliculas_Salas` FOREIGN KEY (`Pelicula_de_sala_id`) REFERENCES `Peliculas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+INSERT INTO `Salas` VALUES (1,50,'10','Toy Story',1);
+INSERT INTO `Salas` VALUES (2,38,'11','Luca',2);
+INSERT INTO `Salas` VALUES (3,70,'12','Avengers',3);
